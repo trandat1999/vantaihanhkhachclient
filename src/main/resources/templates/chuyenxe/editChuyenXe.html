@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chuyến Xe</title>
+<link rel="stylesheet" th:href="@{/style.css}">
+<link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet"
+	type="text/css">
+<link
+	href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+	rel="stylesheet">
+</head>
+<body>
+	<div class="menu">
+		<div class="title">
+			<i class="fas fa-car"></i>
+			<p>Travel Manage</p>
+		</div>
+		<hr class="line-divide">
+		<div class="menu-item">
+			<ul>
+				<li class="item"><a th:href="@{/home/taixe}"
+					class="item-link"><i class="fas fa-biking"></i>Tài Xế</a></li>
+				<li class="item"><a th:href="@{/home/chuyenxe}"
+					class="item-link active"><i class="fas fa-route"></i>Chuyến Xe</a></li>
+				<li class="item"><a th:href="@{/home/tuyenxe}"
+					class="item-link"><i class="fas fa-road"></i>Tuyến Xe</a></li>
+				<li class="item"><a th:href="@{/home/xekhach}"
+					class="item-link"><i class="fas fa-car-side"></i>Xe Khách</a></li>
+				<li class="item"><a th:href="@{/home/taixe/luongtaixe}"
+					class="item-link"><i class="fas fa-car-side">Lương Tài xế</i></a></li>
+				<li class="item"><a th:href="@{/home/xekhach/doanhthuxe}"
+					class="item-link"><i class="fas fa-car-side"></i>Doanh Thu Xe</a></li>
+				<li class="item"><a th:href="@{/home/xekhach/ngaybaoduong}"
+					class="item-link"><i class="fas fa-car-side"></i>Ngày Bảo Dưỡng
+						Xe</a></li>
+			</ul>
+			<div class="btn">
+				<button class="zoomInBtn" onclick="zoomIn()"><<<</button>
+			</div>
+		</div>
+	</div>
+
+	<form method="POST" th:object="${chuyenxe}" style="color: black">
+		<table>
+			<tr>
+				<th>Attribute</th>
+				<th>Values</th>
+			</tr>
+			<tr>
+				<td>id</td>
+				<td th:field="*{id}" th:text="${chuyenxe.id}"
+					th:value="${chuyenxe.id}"></td>
+			</tr>
+			<tr>
+				<td>Số lượng Khách <span id="maxKhach"></span></td>
+				<td><input type="number" min=0 th:field="*{soLuongKhach}"
+					required="required" /></td>
+			</tr>
+			<tr>
+				<td>Giá vé</td>
+				<td><input type="number" min=0 th:field="*{giaVe}"
+					required="required" /></td>
+			</tr>
+
+			<tr>
+				<td>Ngày chạy</td>
+				<td><input type="date" th:name="ngaychay" required="required" /></td>
+			</tr>
+			<tr>
+				<td>Lái xe</td>
+				<td><select th:name="laixe">
+						<option th:each="laixe: ${listtaixe}" th:value="${laixe.id}"
+							th:text="${laixe.ten}"></option>
+				</select></td>
+			</tr>
+			<tr>
+				<td>Phụ xe</td>
+				<td><select th:name="phuxe">
+						<option th:each="phuxe: ${listtaixe}" th:value="${phuxe.id}"
+							th:text="${phuxe.ten}"></option>
+				</select></td>
+			</tr>
+			<tr>
+				<td>Xe Khách</td>
+				<td><select th:name="xekhach">
+						<option th:each="phuxe: ${listxekhach}"
+							th:data-max="${phuxe.soGhe-2}" th:value="${phuxe.id}"
+							th:text="${phuxe.bienSo}"></option>
+				</select></td>
+			</tr>
+			<tr>
+				<td>Tuyến Xe</td>
+				<td><select th:name="tuyen">
+						<option th:each="phuxe: ${listtuyenxe}" th:value="${phuxe.id}"
+							th:text="${phuxe.diemDau + ' - ' + phuxe.diemCuoi}"></option>
+				</select></td>
+			</tr>
+		</table>
+
+		<br /> <input type="submit" value="Submit" />
+	</form>
+</body>
+<script type="text/javascript" src="/main.js" /></script>
+<script type="text/javascript" src="/select.js" /></script>
+<script type="text/javascript" src="/setMax.js" /></script>
+</html>
