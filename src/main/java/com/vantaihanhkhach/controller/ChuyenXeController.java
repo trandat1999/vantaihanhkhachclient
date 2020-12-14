@@ -31,26 +31,26 @@ public class ChuyenXeController {
 	@GetMapping()
 	public String homedriver(Model model) {
 		List<ChuyenXe> listTaiXe = Arrays
-				.asList(rest.getForObject("http://localhost:8080/api/chuyenxe", ChuyenXe[].class));
+				.asList(rest.getForObject("https://vantaihanhkhach.herokuapp.com/api/chuyenxe", ChuyenXe[].class));
 		model.addAttribute("listchuyenxe", listTaiXe);
 		return "chuyenxe/listChuyenXe";
 	}
 
 	@GetMapping("/edit/{id}")
 	public String editdriver(Model model, @PathVariable("id") long id) {
-		ChuyenXe taixe = rest.getForObject("http://localhost:8080/api/chuyenxe/{id}", ChuyenXe.class, id);
+		ChuyenXe taixe = rest.getForObject("https://vantaihanhkhach.herokuapp.com/api/chuyenxe/{id}", ChuyenXe.class, id);
 		model.addAttribute("chuyenxe", taixe);
 		
-		List<TaiXe> listTaiXe = Arrays.asList(rest.getForObject("http://localhost:8080/api/taixe", TaiXe[].class));
+		List<TaiXe> listTaiXe = Arrays.asList(rest.getForObject("https://vantaihanhkhach.herokuapp.com/api/taixe", TaiXe[].class));
 		model.addAttribute("listtaixe", listTaiXe);
 
 		List<TuyenXe> listTuyenXe = Arrays
-				.asList(rest.getForObject("http://localhost:8080/api/tuyenxe", TuyenXe[].class));
+				.asList(rest.getForObject("https://vantaihanhkhach.herokuapp.com/api/tuyenxe", TuyenXe[].class));
 
 		model.addAttribute("listtuyenxe", listTuyenXe);
 
 		List<XeKhach> listXeKhach = Arrays
-				.asList(rest.getForObject("http://localhost:8080/api/xekhach", XeKhach[].class));
+				.asList(rest.getForObject("https://vantaihanhkhach.herokuapp.com/api/xekhach", XeKhach[].class));
 
 		model.addAttribute("listxekhach", listXeKhach);
 		return "chuyenxe/editChuyenXe";
@@ -68,10 +68,10 @@ public class ChuyenXeController {
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
-		taixe.setTaixe(rest.getForObject("http://localhost:8080/api/taixe/{id}", TaiXe.class, laixe));
-		taixe.setTaixe1(rest.getForObject("http://localhost:8080/api/taixe/{id}", TaiXe.class, phuxe));
-		taixe.setTuyenxe(rest.getForObject("http://localhost:8080/api/tuyenxe/{id}", TuyenXe.class, tuyenxe));
-		taixe.setXeKhach(rest.getForObject("http://localhost:8080/api/xekhach/{id}", XeKhach.class, xekhach));
+		taixe.setTaixe(rest.getForObject("https://vantaihanhkhach.herokuapp.com/api/taixe/{id}", TaiXe.class, laixe));
+		taixe.setTaixe1(rest.getForObject("https://vantaihanhkhach.herokuapp.com/api/taixe/{id}", TaiXe.class, phuxe));
+		taixe.setTuyenxe(rest.getForObject("https://vantaihanhkhach.herokuapp.com/api/tuyenxe/{id}", TuyenXe.class, tuyenxe));
+		taixe.setXeKhach(rest.getForObject("https://vantaihanhkhach.herokuapp.com/api/xekhach/{id}", XeKhach.class, xekhach));
 		rest.postForObject("http://localhost:8080/api/chuyenxe", taixe, ChuyenXe.class);
 		return "redirect:/home/chuyenxe";
 	}
@@ -80,16 +80,16 @@ public class ChuyenXeController {
 	public String adddriver(Model model) {
 		model.addAttribute("chuyenxe", new ChuyenXe());
 
-		List<TaiXe> listTaiXe = Arrays.asList(rest.getForObject("http://localhost:8080/api/taixe", TaiXe[].class));
+		List<TaiXe> listTaiXe = Arrays.asList(rest.getForObject("https://vantaihanhkhach.herokuapp.com/api/taixe", TaiXe[].class));
 		model.addAttribute("listtaixe", listTaiXe);
 
 		List<TuyenXe> listTuyenXe = Arrays
-				.asList(rest.getForObject("http://localhost:8080/api/tuyenxe", TuyenXe[].class));
+				.asList(rest.getForObject("https://vantaihanhkhach.herokuapp.com/api/tuyenxe", TuyenXe[].class));
 
 		model.addAttribute("listtuyenxe", listTuyenXe);
 
 		List<XeKhach> listXeKhach = Arrays
-				.asList(rest.getForObject("http://localhost:8080/api/xekhach", XeKhach[].class));
+				.asList(rest.getForObject("https://vantaihanhkhach.herokuapp.com/api/xekhach", XeKhach[].class));
 
 		model.addAttribute("listxekhach", listXeKhach);
 		return "chuyenxe/addChuyenXe";
@@ -107,17 +107,17 @@ public class ChuyenXeController {
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
-		taixe.setTaixe(rest.getForObject("http://localhost:8080/api/taixe/{id}", TaiXe.class, laixe));
-		taixe.setTaixe1(rest.getForObject("http://localhost:8080/api/taixe/{id}", TaiXe.class, phuxe));
-		taixe.setTuyenxe(rest.getForObject("http://localhost:8080/api/tuyenxe/{id}", TuyenXe.class, tuyenxe));
-		taixe.setXeKhach(rest.getForObject("http://localhost:8080/api/xekhach/{id}", XeKhach.class, xekhach));
+		taixe.setTaixe(rest.getForObject("https://vantaihanhkhach.herokuapp.com/api/taixe/{id}", TaiXe.class, laixe));
+		taixe.setTaixe1(rest.getForObject("https://vantaihanhkhach.herokuapp.com/api/taixe/{id}", TaiXe.class, phuxe));
+		taixe.setTuyenxe(rest.getForObject("https://vantaihanhkhach.herokuapp.com/api/tuyenxe/{id}", TuyenXe.class, tuyenxe));
+		taixe.setXeKhach(rest.getForObject("https://vantaihanhkhach.herokuapp.com/api/xekhach/{id}", XeKhach.class, xekhach));
 		rest.postForObject("http://localhost:8080/api/chuyenxe", taixe, ChuyenXe.class);
 		return "redirect:/home/chuyenxe";
 	}
 
 	@GetMapping(value = "/delete/{id}")
 	public String deleteTuyenXe(@PathVariable("id") long id) {
-		rest.delete("http://localhost:8080/api/chuyenxe/{id}", id);
+		rest.delete("https://vantaihanhkhach.herokuapp.com/api/chuyenxe/{id}", id);
 		return "redirect:/home/chuyenxe";
 	}
 
