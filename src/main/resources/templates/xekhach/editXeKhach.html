@@ -20,14 +20,15 @@
 		<hr class="line-divide">
 		<div class="menu-item">
 			<ul>
-				<li class="item"><a th:href="@{/home/taixe}"
-					class="item-link "><i class="fas fa-biking"></i>Tài Xế</a></li>
+				<li class="item"><a th:href="@{/home/taixe}" class="item-link "><i
+						class="fas fa-biking"></i>Tài Xế</a></li>
 				<li class="item"><a th:href="@{/home/chuyenxe}"
 					class="item-link"><i class="fas fa-route"></i>Chuyến Xe</a></li>
 				<li class="item"><a th:href="@{/home/tuyenxe}"
 					class="item-link"><i class="fas fa-road"></i>Tuyến Xe</a></li>
 				<li class="item"><a th:href="@{/home/xekhach}"
-					class="item-link active"><i class="fas fa-car-side"></i>Xe Khách</a></li>
+					class="item-link active"><i class="fas fa-car-side"></i>Xe
+						Khách</a></li>
 				<li class="item"><a th:href="@{/home/taixe/luongtaixe}"
 					class="item-link"><i class="fas fa-car-side">Lương Tài xế</i></a></li>
 				<li class="item"><a th:href="@{/home/xekhach/doanhthuxe}"
@@ -43,7 +44,7 @@
 	</div>
 
 	<form method="POST" th:object="${xekhach}" style="color: black">
-	<h1 th:if="${err}" style="color:blue">Xe Khách đã tồn tại </h1>
+		<h1 th:if="${err}" style="color: blue">Xe Khách đã tồn tại</h1>
 		<table>
 			<tr>
 				<th>Attribute</th>
@@ -55,48 +56,45 @@
 			</tr>
 			<tr>
 				<td>Biển số</td>
-				<td><input type="text" th:field="*{bienSo}" required="required"/></td>
+				<td><input type="text" th:field="*{bienSo}" required="required" /></td>
 			</tr>
 			<tr>
 				<td>Màu xe</td>
-				<td><input type="color" th:field="*{mauXe}" required="required"/></td>
+				<td><input type="color" th:field="*{mauXe}" required="required" /></td>
 			</tr>
 
 			<tr>
 				<td>Hãng sản xuất</td>
-				<td><input type="text" th:field="*{hsx}" required="required"/></td>
+				<td><input type="text" th:field="*{hsx}" required="required" /></td>
 			</tr>
 			<tr>
 				<td>Kiểu xe</td>
-				<td><input type="text" th:field="*{kieuXe}" required="required"/></td>
+				<td><input type="text" th:field="*{kieuXe}" required="required" /></td>
 			</tr>
 			<tr>
 				<td>Số ghế</td>
-				<td><input type="number" min=4 max=50 th:field="*{soGhe}" required="required"/></td>
+				<td><input type="number" min=4 max=50 th:field="*{soGhe}"
+					required="required" /></td>
 			</tr>
 			<tr>
 				<td>Số năm sử dụng</td>
-				<td><input type="number" min=0 th:field="*{soNamSD}" required="required"/></td>
+				<td><input type="number" min=0 th:field="*{soNamSD}"
+					required="required" /></td>
 			</tr>
 			<tr>
 				<td>Ngày bảo dưỡng cuối</td>
-				<td><input type="date" name="ngaybaoduong" required="required"/></td>
+				<td><input type="date" name="ngaybaoduong" required="required" /></td>
 			</tr>
 
 		</table>
-
-		<!-- <label>Id: </label> <input type="text" th:field="*{id}" readonly
-			th:text="${taixe.id}" /> <br /> <label>Tên: </label> <input
-			type="text" name="diemcuoi" /> <br /> <label for="state">CMND:</label>
-		<input type="number" name="dodai" /><br /> <label for="zip">Mã
-			Bằng Lái: </label> <input type="number" name="dophuctap" /><br /> -->
-		<!-- <select th:field="*{doPhucTap}">
-				<option th:value="1">1</option>
-				<option th:value="2">2</option>
-				<option th:value="3">3</option>
-			</select> -->
 		<br /> <input type="submit" value="Submit" />
 	</form>
+	<script type="text/javascript">
+		document.getElementsByName('ngaybaoduong')[0].max = (function() {
+			let data = new Date().toLocaleDateString().split("/");
+			return `${data[2]}-${data[0]}-${data[1]}`;
+		})()
+	</script>
 </body>
 <script type="text/javascript" src="/main.js" /></script>
 <script type="text/javascript" src="/select.js" /></script>

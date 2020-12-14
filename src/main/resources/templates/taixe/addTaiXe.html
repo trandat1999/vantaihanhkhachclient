@@ -83,19 +83,14 @@
 			</tr>
 
 		</table>
-
-		<!-- <label>Id: </label> <input type="text" th:field="*{id}" readonly
-			th:text="${taixe.id}" /> <br /> <label>Tên: </label> <input
-			type="text" name="diemcuoi" /> <br /> <label for="state">CMND:</label>
-		<input type="number" name="dodai" /><br /> <label for="zip">Mã
-			Bằng Lái: </label> <input type="number" name="dophuctap" /><br /> -->
-		<!-- <select th:field="*{doPhucTap}">
-				<option th:value="1">1</option>
-				<option th:value="2">2</option>
-				<option th:value="3">3</option>
-			</select> -->
 		<br /> <input type="submit" value="Submit" />
 	</form>
+	<script type="text/javascript">
+	document.getElementsByName('ngaysinh')[0].max = (function(){
+	    let data = new Date().toLocaleDateString().split("/");
+	    return `${data[2]}-${data[0]}-${data[1]}`;
+	})()
+	</script>
 </body>
 <script type="text/javascript" src="/main.js" /></script>
 <script type="text/javascript" src="/select.js" /></script>

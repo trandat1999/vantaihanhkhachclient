@@ -33,7 +33,8 @@
 				<li class="item"><a th:href="@{/home/xekhach/doanhthuxe}"
 					class="item-link"><i class="fas fa-car-side"></i>Doanh Thu Xe</a></li>
 				<li class="item"><a th:href="@{/home/xekhach/ngaybaoduong}"
-					class="item-link"><i class="fas fa-car-side"></i>Ngày Bảo Dưỡng Xe</a></li>
+					class="item-link"><i class="fas fa-car-side"></i>Ngày Bảo Dưỡng
+						Xe</a></li>
 			</ul>
 			<div class="btn">
 				<button class="zoomInBtn" onclick="zoomIn()"><</button>
@@ -42,8 +43,8 @@
 	</div>
 
 	<form method="POST" th:object="${taixe}">
-	<h1 th:if="${err}" style="color:blue">Tài xế đã tồn tại </h1>
-		<table >
+		<h1 th:if="${err}" style="color: blue">Tài xế đã tồn tại</h1>
+		<table>
 			<tr>
 				<th>Attribute</th>
 				<th>Values</th>
@@ -54,48 +55,48 @@
 			</tr>
 			<tr>
 				<td>Tên</td>
-				<td><input type="text" th:field="*{ten}" required="required"/></td>
+				<td><input type="text" th:field="*{ten}" required="required" /></td>
 			</tr>
 			<tr>
 				<td>CMND</td>
-				<td><input type="number" maxlength=12 th:field="*{CMND}" required="required"/></td>
+				<td><input type="number" maxlength=12 th:field="*{CMND}"
+					required="required" /></td>
 			</tr>
-			
+
 			<tr>
 				<td>Mã Bằng Lái</td>
-				<td><input type="text" th:field="*{maBangLai}" required="required" /></td>
+				<td><input type="text" th:field="*{maBangLai}"
+					required="required" /></td>
 			</tr>
 			<tr>
 				<td>Loại Bằng Lái</td>
-				<td><input type="text" th:field="*{loaiBangLai}" required="required"/></td>
+				<td><input type="text" th:field="*{loaiBangLai}"
+					required="required" /></td>
 			</tr>
 			<tr>
 				<td>Địa chỉ</td>
-				<td><input type="text" th:field="*{diaChi}" required="required"/></td>
+				<td><input type="text" th:field="*{diaChi}" required="required" /></td>
 			</tr>
 			<tr>
 				<td>Ngày Sinh</td>
-				<td><input type="date" name="ngaysinh" required="required"/></td>
+				<td><input type="date" name="ngaysinh" required="required" /></td>
 			</tr>
 			<tr>
 				<td>Thâm niên</td>
-				<td><input type="number" min=0 th:field="*{thamNien}" required="required"/></td>
+				<td><input type="number" min=0 th:field="*{thamNien}"
+					required="required" /></td>
 			</tr>
 
 		</table>
 
-		<!-- <label>Id: </label> <input type="text" th:field="*{id}" readonly
-			th:text="${taixe.id}" /> <br /> <label>Tên: </label> <input
-			type="text" name="diemcuoi" /> <br /> <label for="state">CMND:</label>
-		<input type="number" name="dodai" /><br /> <label for="zip">Mã
-			Bằng Lái: </label> <input type="number" name="dophuctap" /><br /> -->
-		<!-- <select th:field="*{doPhucTap}">
-				<option th:value="1">1</option>
-				<option th:value="2">2</option>
-				<option th:value="3">3</option>
-			</select> -->
 		<br /> <input type="submit" value="Submit" />
 	</form>
+	<script type="text/javascript">
+		document.getElementsByName('ngaysinh')[0].max = (function() {
+			let data = new Date().toLocaleDateString().split("/");
+			return `${data[2]}-${data[0]}-${data[1]}`;
+		})()
+	</script>
 </body>
 <script type="text/javascript" src="/main.js" /></script>
 <script type="text/javascript" src="/select.js" /></script>

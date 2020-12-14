@@ -100,6 +100,12 @@
 
 		<br /> <input type="submit" value="Submit" />
 	</form>
+	<script type="text/javascript">
+	document.getElementsByName('ngaychay')[0].max = (function(){
+	    let data = new Date().toLocaleDateString().split("/");
+	    return `${data[2]}-${data[0]}-${data[1]}`;
+	})()
+	</script>
 </body>
 <script type="text/javascript" src="/main.js" /></script>
 <script type="text/javascript" src="/select.js" /></script>
