@@ -21,21 +21,21 @@ public class TuyenXeController {
 	
 	@GetMapping()
 	public String homedriver(Model model) {
-		List<TuyenXe> listTaiXe = Arrays.asList(rest.getForObject("http://localhost:8080/api/tuyenxe", TuyenXe[].class));
+		List<TuyenXe> listTaiXe = Arrays.asList(rest.getForObject("https://vantaihanhkhach.herokuapp.com/api/tuyenxe", TuyenXe[].class));
 		model.addAttribute("listtaixe", listTaiXe);
 		return "tuyenxe/listTuyenXe";
 	}
 
 	@GetMapping("/edit/{id}")
 	public String editdriver(Model model, @PathVariable("id") long id) {
-		TuyenXe tuyenxe = rest.getForObject("http://localhost:8080/api/tuyenxe/{id}", TuyenXe.class, id);
+		TuyenXe tuyenxe = rest.getForObject("https://vantaihanhkhach.herokuapp.com/api/tuyenxe/{id}", TuyenXe.class, id);
 		model.addAttribute("xekhach", tuyenxe);
 		return "tuyenxe/editTuyenXe";
 	}
 
 	@PostMapping("/edit/{id}")
 	public String editdriver2(@ModelAttribute TuyenXe xekhach) {
-		rest.postForObject("http://localhost:8080/api/tuyenxe", xekhach, TuyenXe.class);
+		rest.postForObject("https://vantaihanhkhach.herokuapp.com/api/tuyenxe", xekhach, TuyenXe.class);
 		return "redirect:/home/tuyenxe";
 	}
 
@@ -47,13 +47,13 @@ public class TuyenXeController {
 
 	@PostMapping("/add")
 	public String adddriver2(@ModelAttribute TuyenXe xekhach) {
-		rest.postForObject("http://localhost:8080/api/tuyenxe", xekhach, TuyenXe.class);
+		rest.postForObject("https://vantaihanhkhach.herokuapp.com/api/tuyenxe", xekhach, TuyenXe.class);
 		return "redirect:/home/tuyenxe";
 	}
 
 	@GetMapping(value = "/delete/{id}")
 	public String deleteTuyenXe(@PathVariable("id") long id) {
-		rest.delete("http://localhost:8080/api/tuyenxe/{id}", id);
+		rest.delete("https://vantaihanhkhach.herokuapp.com/api/tuyenxe/{id}", id);
 		return "redirect:/home/tuyenxe";
 	}
 }

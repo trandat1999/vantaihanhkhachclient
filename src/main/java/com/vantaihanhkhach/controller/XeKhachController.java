@@ -34,7 +34,7 @@ public class XeKhachController {
 	@GetMapping()
 	public String homedriver(Model model) {
 		List<XeKhach> listXeKhach = Arrays
-				.asList(rest.getForObject("http://localhost:8080/api/xekhach", XeKhach[].class));
+				.asList(rest.getForObject("https://vantaihanhkhach.herokuapp.com/api/xekhach", XeKhach[].class));
 		model.addAttribute("listxekhach", listXeKhach);
 		return "xekhach/listxekhach";
 	}
@@ -45,7 +45,7 @@ public class XeKhachController {
 		HashMap<String, Long> dayduong = new HashMap<>();
 		HashMap<String, Long> dayam = new HashMap<>();
 		List<XeKhach> listxekhach = Arrays
-				.asList(rest.getForObject("http://localhost:8080/api/xekhach", XeKhach[].class));
+				.asList(rest.getForObject("https://vantaihanhkhach.herokuapp.com/api/xekhach", XeKhach[].class));
 		for (XeKhach xekhach : listxekhach) {
 			long day=360;
 			LocalDate a= LocalDate.parse(formatter.format(xekhach.getNgayBaoDuongCuoi()), DateTimeFormatter.ISO_LOCAL_DATE);
@@ -54,7 +54,7 @@ public class XeKhachController {
 	        long diffDays = diff.toDays();
 	        day-=diffDays;
 			List<ChuyenXe> listchuyenxe = Arrays
-					.asList(rest.getForObject("http://localhost:8080/api/chuyenxe/Greater/{date1}", ChuyenXe[].class,
+					.asList(rest.getForObject("https://vantaihanhkhach.herokuapp.com/api/chuyenxe/Greater/{date1}", ChuyenXe[].class,
 							formatter.format(xekhach.getNgayBaoDuongCuoi())));
 			for(ChuyenXe chuyenxe:listchuyenxe) {
 				if(chuyenxe.getXeKhach().getBienSo().equals(xekhach.getBienSo())) {
@@ -85,7 +85,7 @@ public class XeKhachController {
 		map.put("date1", enddate);
 
 		List<ChuyenXe> listchuyenxe = Arrays
-				.asList(rest.getForObject("http://localhost:8080/api/chuyenxe/{date}/{date1}", ChuyenXe[].class, map));
+				.asList(rest.getForObject("https://vantaihanhkhach.herokuapp.com/api/chuyenxe/{date}/{date1}", ChuyenXe[].class, map));
 		HashMap<String, Double> salary = new HashMap<>();
 		for (ChuyenXe chuyenxe : listchuyenxe) {
 			if (salary.containsKey(chuyenxe.getXeKhach().getBienSo())) {
@@ -103,7 +103,7 @@ public class XeKhachController {
 
 	@GetMapping("/edit/{id}")
 	public String editdriver(Model model, @PathVariable("id") long id) {
-		XeKhach taixe = rest.getForObject("http://localhost:8080/api/xekhach/{id}", XeKhach.class, id);
+		XeKhach taixe = rest.getForObject("https://vantaihanhkhach.herokuapp.com/api/xekhach/{id}", XeKhach.class, id);
 		model.addAttribute("xekhach", taixe);
 		return "xekhach/editXeKhach";
 	}
@@ -117,7 +117,7 @@ public class XeKhachController {
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
-		if(rest.postForObject("http://localhost:8080/api/xekhach", xekhach, XeKhach.class)==null) {
+		if(rest.postForObject("https://vantaihanhkhach.herokuapp.com/api/xekhach", xekhach, XeKhach.class)==null) {
 			model.addAttribute("err", "xe khach is exists");
 			model.addAttribute("xekhach", xekhach);
 			return "xekhach/editXeKhach";
@@ -141,7 +141,7 @@ public class XeKhachController {
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
-		if(rest.postForObject("http://localhost:8080/api/xekhach", xekhach, XeKhach.class)==null) {
+		if(rest.postForObject("https://vantaihanhkhach.herokuapp.com/api/xekhach", xekhach, XeKhach.class)==null) {
 			model.addAttribute("err", "xe khach is exists");
 			model.addAttribute("xekhach", xekhach);
 			return "xekhach/addXeKhach";
@@ -152,7 +152,7 @@ public class XeKhachController {
 
 	@GetMapping(value = "/delete/{id}")
 	public String deleteTuyenXe(@PathVariable("id") long id) {
-		rest.delete("http://localhost:8080/api/xekhach/{id}", id);
+		rest.delete("https://vantaihanhkhach.herokuapp.com/api/xekhach/{id}", id);
 		return "redirect:/home/xekhach";
 	}
 }
