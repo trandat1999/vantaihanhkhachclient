@@ -111,7 +111,7 @@ public class ChuyenXeController {
 		taixe.setTaixe1(rest.getForObject("https://vantaihanhkhach.herokuapp.com/api/taixe/{id}", TaiXe.class, phuxe));
 		taixe.setTuyenxe(rest.getForObject("https://vantaihanhkhach.herokuapp.com/api/tuyenxe/{id}", TuyenXe.class, tuyenxe));
 		taixe.setXeKhach(rest.getForObject("https://vantaihanhkhach.herokuapp.com/api/xekhach/{id}", XeKhach.class, xekhach));
-		rest.postForObject("http://localhost:8080/api/chuyenxe", taixe, ChuyenXe.class);
+		rest.postForObject("https://vantaihanhkhach.herokuapp.com/api/chuyenxe", taixe, ChuyenXe.class);
 		return "redirect:/home/chuyenxe";
 	}
 
