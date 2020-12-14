@@ -29,16 +29,16 @@ public class TaiXeController {
 
 	@GetMapping()
 	public String homedriver(Model model) {
-		List<TaiXe> listTaiXe = Arrays.asList(rest.getForObject("https://vantaihanhkhach.herokuapp.com/api/taixe", TaiXe[].class));
+		List<TaiXe> listTaiXe = Arrays
+				.asList(rest.getForObject("https://vantaihanhkhach.herokuapp.com/api/taixe", TaiXe[].class));
 		model.addAttribute("listtaixe", listTaiXe);
 		return "taixe/homedriver";
 	}
 
 	@GetMapping("/luongtaixe")
 	public String salary(Model model) {
-
-		List<ChuyenXe> listChuyenXe = Arrays.asList(rest.getForObject("https://vantaihanhkhach.herokuapp.com/api/chuyenxe/get/{date}",
-				ChuyenXe[].class, formatter.format(new Date())));
+		List<ChuyenXe> listChuyenXe = Arrays
+				.asList(rest.getForObject("https://vantaihanhkhach.herokuapp.com/api/chuyenxe/get", ChuyenXe[].class));
 		HashMap<String, Double> salary = new HashMap<>();
 		for (ChuyenXe chuyenxe : listChuyenXe) {
 			if (salary.containsKey(chuyenxe.getTaixe().getTen())) {
@@ -77,15 +77,16 @@ public class TaiXeController {
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
-		if(rest.postForObject("https://vantaihanhkhach.herokuapp.com/api/taixe", taixe, TaiXe.class)==null) {
+		if (rest.postForObject("https://vantaihanhkhach.herokuapp.com/api/taixe", taixe, TaiXe.class) == null) {
 			model.addAttribute("err", "nv is exists");
-			//TaiXe taixe = rest.getForObject("http://localhost:8080/api/taixe/{id}", TaiXe.class, taixe.getId());
+			// TaiXe taixe = rest.getForObject("http://localhost:8080/api/taixe/{id}",
+			// TaiXe.class, taixe.getId());
 			model.addAttribute("taixe", taixe);
 			return "taixe/editTaiXe";
-		}else {
+		} else {
 			return "redirect:/home/taixe";
 		}
-		
+
 	}
 
 	@GetMapping("/add")
@@ -104,12 +105,13 @@ public class TaiXeController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		if(rest.postForObject("https://vantaihanhkhach.herokuapp.com/api/taixe", taixe, TaiXe.class)==null) {
+		if (rest.postForObject("https://vantaihanhkhach.herokuapp.com/api/taixe", taixe, TaiXe.class) == null) {
 			model.addAttribute("err", "nv is exists");
-			//TaiXe taixe = rest.getForObject("http://localhost:8080/api/taixe/{id}", TaiXe.class, taixe.getId());
+			// TaiXe taixe = rest.getForObject("http://localhost:8080/api/taixe/{id}",
+			// TaiXe.class, taixe.getId());
 			model.addAttribute("taixe", taixe);
 			return "taixe/addTaiXe";
-		}else {
+		} else {
 			return "redirect:/home/taixe";
 		}
 	}
